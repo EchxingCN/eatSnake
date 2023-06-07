@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/案例/eatSnake/js/jquery-3.3.1.js"></script>
+    <script src="/案例/eatSnake/js/eatSnakeCenter.js"></script>
+    <!-- <script src="/案例/eatSnake/js/eatSnakeCenter copy.js"></script> -->
+    <!-- <script src="/案例/eatSnake/js/eatSnakeNotNotes.js"></script> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 布局 */
+        .div1 {
+            width: 805px;
+            /* 23*35个 */
+            height: 506px;
+            /* 23*22个 */
+            /* 居中 */
+            /* 外边距 */
+            /* margin: 0 0 0 150px; */
+            /* border: 1px solid lightsalmon; */
+            border-right: solid 3px lightsalmon;
+            border-bottom: solid 4px lightsalmon;
+            border-left: solid 3px lightsalmon;
+            border-top: 4px solid lightsalmon;
+            /* border: 3px solid lightsalmon;
+
+            /* 相对定位：relative */
+            /* position: relative; */
+            position: absolute;
+            left: 150px;
+            /* 设置div为隐藏 */
+            /* display: none; */
+            z-index: 1;
+        }
+
+        /* 暂停页面 */
+        .divMu {
+            width: 161px;
+            height: 184px;
+            /* float: left; */
+            background-color: rgb(192, 192, 192);
+            position: absolute;
+            left: 321px;
+            top: 69px;
+            /* 设置div为隐藏 */
+            display: none;
+            border: rgb(192, 193, 222) 8px solid;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .button {
+            width: 95px;
+            height: 21px;
+            border: rgb(170, 170, 194) 4px solid;
+            background-color: rgb(128, 114, 114);
+            text-align: center;
+            color: rgb(211, 211, 211);
+            /* position: absolute; */
+            position: relative;
+            top: 10%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            /* 去掉li自带的小点点 */
+            list-style: none;
+            /* 字体设置 */
+            font-weight: 600;
+            /* 鼠标悬停变小手*/
+            cursor: pointer;
+
+        }
+
+        /* 去掉a标签下划线 */
+        a {
+            text-decoration: none;
+            color: rgb(211, 211, 211);
+        }
+
+        li a:hover {
+            background: #000;
+            display: block;
+        }
+
+        .button2 {
+            width: 95px;
+            height: 21px;
+            list-style: none;
+            position: relative;
+            top: 10%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .startGame {
+            width: 95px;
+            height: 21px;
+            border: rgb(170, 170, 194) 4px solid;
+            background-color: rgb(128, 114, 114);
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            /* position: relative; */
+            position: absolute;
+            left: 47px;
+            top: 23px;
+            float: left;
+            z-index: 2;
+            /* display: none; */
+        }
+
+        /* 半透明 */
+        .opacity {
+            opacity: 0.8;
+
+        }
+
+        /* 头 */
+        .divHead {
+            /* width: 54px; */
+            width: 23px;
+            height: 23px;
+            margin-top: 115px;
+            /* 23*5=115 */
+            margin-left: 391px;
+            /* 23*17=391 */
+            /* position: relative; */
+            position: absolute;
+            background-color: lightsalmon;
+
+            /* border: springgreen 1px solid;
+            box-sizing: border-box */
+            z-index: 3;
+        }
+
+        /* 身 */
+        .divBody {
+            width: 23px;
+            height: 23px;
+            margin-top: 115px;
+            margin-left: 368px;
+            /* position: relative; */
+            position: absolute;
+            /* margin:上 右 下 左 */
+            background-color: rgb(120, 112, 201);
+            z-index: 3;
+            /* 设置左边框 */
+            /* border-left: solid 1px gold; */
+            /*border: springgreen 1px solid; */
+            /* 设置为内边框 */
+            /* box-sizing: border-box; */
+        }
+
+        /* 食物 */
+        .eats {
+            /* margin-top: 460px; */
+            /* margin-left: 253px; */
+            background-color: rgb(72, 62, 158);
+            /* position: relative; */
+            /* 相对于父元素定位 */
+            position: absolute;
+            /* display: none; */
+            /* left: -28px; */
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="snk">
+
+
+
+
+        <li class="startGame"><a href="#">开始游戏</a></li>
+        <!-- 布局 -->
+        <div class="div1" style="background: url(/案例/eatSnake/images/x.png);">
+            <!-- 食物 -->
+            <img src="/案例/eatSnake/images/马.png" class="eats" id="sE">
+            <!-- 遮罩 -->
+            <div class="divMu opacity">
+                <li class="button">你这牛马G了</li>
+                <li class="button2"></li>
+                <li class="button" id="startEat"><a href="#">重新开始</a></li>
+                <li class="button2"></li>
+                <li class="button" id="jastStop"><a href="#">虚了,歇会</a></li>
+            </div>
+
+            <!-- 头 -->
+            <!-- <div class="divHead" id="snakeHead"> -->
+            <!-- <img src="/案例/eatSnake/images/牛.png"> -->
+            <img src="/案例/eatSnake/images/4.png" class="divBody" id="snakeBody">
+            <img src="/案例/eatSnake/images/牛.png" class="divHead" id="snakeHead">
+
+            <!-- <img src="/案例/eatSnake/images/x.png" alt=""> -->
+            <!-- 身 -->
+            <!-- <div class="div3" id="1"> -->
+            <!-- <img src="/案例/eatSnake/images/马.png"> -->
+            <!-- </div> -->
+            <!-- </div> -->
+
+        </div>
+    </div>
+
+</body>
+
+</html>
